@@ -43,8 +43,6 @@ namespace ogl {
 			Debug::PrintLn("Failed to load proc address.");
 			Application::Instance().Stop();
 		}
-
-		gl
 	}
 
 	void RenderModule::Update() {

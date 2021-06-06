@@ -26,7 +26,7 @@ set(SOURCE_FILES
 	"util/errors.h"
 	"module.h"
 
-	"main.cpp" "util/worker_pool.h" "util/linked_list.h" "core_modules/render_module.h" "core_modules/event_module.h" "core_modules/update_module.h" "core_modules/threading_module.h"   "core_modules/render_module.cpp")
+	"main.cpp" "util/worker_pool.h" "util/linked_list.h" "core_modules/render_module.h" "core_modules/event_module.h" "core_modules/update_module.h" "core_modules/threading_module.h"   "core_modules/render_module.cpp" "events/event_dispatcher.h" "events/event_dispatcher.cpp")
 	
 
 
