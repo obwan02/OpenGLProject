@@ -1,0 +1,6 @@
+TODO:
+
+- Event sytem
+- Multiple application system - so we can have editor
+- Remove dependency on std::type_info and use static identifiers instead
+- Renderer
