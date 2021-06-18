@@ -4,3 +4,5 @@ TODO:
 - Multiple application system - so we can have editor
 - Remove dependency on std::type_info and use static identifiers instead
 - Renderer
+- add namespace internal for internal classes/funcs
+- change std::thread in modules to get threads from threading_module

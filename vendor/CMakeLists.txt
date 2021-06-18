@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.8)
 cmake_policy(SET CMP0076 NEW)
 cmake_policy(SET CMP0079 NEW)
 
+
+
 #GLAD
 set(GLAD_SOURCES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/glad" FORCE)
 set(GLAD_INSTALL OFF CACHE BOOL "" FORCE)

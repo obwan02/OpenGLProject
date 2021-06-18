@@ -1,80 +1,102 @@
 #include "application.h"
-#include "core_modules/threading_module.h"
-#include "core_modules/update_module.h"
+
+#include <sstream>
 
 namespace ogl {
 
 	Application* Application::s_Instance = nullptr;
 
-	void Application::Run() {
-
-		if (m_Stopped) return;
-
-		if (!m_StartModule.Complete()) {
-			Debug::PrintLn("No 'RunnableModule' was specified to start the application");
-			throw std::logic_error("No 'RunnableModule' was specified to start the application");
-			//TODO: Might change to debug print and just return or exit(-1).
-			// or just return false
-		}
-
-		Module* startModuleAsModule = GetModule(*m_StartModule.index);
-
-		m_Running = true;
-		for(auto& m : m_LoadedModules) {
-			m.second->ApplicationStart();
-			// we need to check if application has aborted operation by calling stop
-			if (!m_Running) {
-				return;
-			}
-		}
-
-		m_StartModule.reference->Run();
-	}
-
-	void Application::Stop() {
-		if (!m_Running) return;
-		m_Stopped = true;
-		m_Running = false;
-		Module* startModuleAsModule = GetModule(*m_StartModule.index);
-		RunnableModule* startModule = m_StartModule.reference;
-
-		for (auto& m : m_LoadedModules) {
-			m.second->ApplicationStop();
-		}
-	}
-
-	bool Application::IsModuleLoaded(const std::type_index& index) {
-		if(m_LoadedModules.count(index)) return true;
-		return false;
-	}
-
-	Module* ogl::Application::GetModule(const std::type_index& index) {
-		if (m_LoadedModules.count(index)) {
-			return m_LoadedModules[index].get();
-		}
-
-		return nullptr;
-	}
+	static void _glfwErrorCallback(int errorCode, const char* msg);
+	static void _gladPostCallback(const char* name, void* funcPtr, int len_args, ...);
 
 	Application::Application() : m_Running(false), m_Stopped(false) {
+		OGL_ASSERT(s_Instance == nullptr);
 		s_Instance = this;
-		m_StartModule.Clear();
-#ifndef NO_AUTO_LOAD_THREADING_MODULE
-		LoadModule<ThreadingModule>();
-#endif
-#ifndef NO_AUTO_LOAD_UPDATE_MODULE
-		LoadModule<UpdateModule>();
-#endif
-#ifndef NO_AUTO_LOAD_THREADING_MODULE
-#ifndef NO_AUTO_LOAD_UPDATE_MODULE
-		SpecifyStartModule<ThreadingModule>();
-		GetModule<ThreadingModule>()->SpecifyMainThread<UpdateModule>();
-#endif
-#endif
+
+		Init();
 	}
 
 	Application::~Application() {
 		Stop();
+		Destroy();
 		s_Instance = nullptr;
+	}
+
+	Layer* Application::LoadLayer(Layer*&& layer) {
+		m_Layers.push_back(std::unique_ptr<Layer>(layer));
+		layer->OnAttached();
+		return layer;
+	}
+
+	void Application::Run() {
+
+		Time lastFrameTime = Time::GetTime();
+		Time lastFPSDisplayTime = Time::GetTime();
+		float numUpdates = 0;
+
+		m_Running = true;
+		while ((m_Running = !m_Window->GetShouldClose())) {
+
+			static Time currentTime = Time::GetTime();
+			static DeltaTime dt = currentTime - lastFrameTime;
+			
+			// process events
+			m_Window->PollEvents();
+			for (auto& ptr : m_Layers) {
+				ptr->Update(dt);
+			}
+			m_Window->SwapBuffers();
+			
+			numUpdates++;
+			if (currentTime - lastFrameTime >= 1.0f) {
+				OGL_STATUS(numUpdates);
+				lastFPSDisplayTime = currentTime;
+			}
+
+			lastFrameTime = currentTime;
+
+		}
+	}
+
+	void Application::Stop() {
+		OGL_INFO("Stopping Application");
+		if (!m_Running) {
+			OGL_INFO("Application is already being stopped or has stopped.");
+			return;
+		}
+
+		m_Stopped = true;
+		m_Running = false;
+	}
+
+	void Application::Init() {
+		glfwSetErrorCallback((GLFWerrorfun)_glfwErrorCallback);
+		if (glfwInit() == GLFW_FALSE) {
+			OGL_ERROR("Failed to initialise GLFW");
+		}
+		m_Window = std::make_unique<Window>("Application Window", 1200, 600);
+		m_Window->SetVSync(true);
+#if defined(OGL_DEBUG) && defined(GLAD_DEBUG)
+		glad_set_post_callback((GLADcallback) _gladPostCallback);
+#endif
+	}
+
+	void Application::Destroy() {
+		//GLFW
+		m_Window.reset(nullptr); //delete window
+		glfwTerminate();
+	}
+
+	static void _glfwErrorCallback(int errorCode, const char* msg) {
+		OGL_ERROR(std::string("[GLFW ERROR] ") + msg);
+	}
+
+	static void _gladPostCallback(const char* name, void* funcPtr, int len_args, ...) {
+		int error = glad_glGetError();
+		if (error != GL_NO_ERROR) {
+			std::stringstream s;
+			s << "GL func \'" << name << "\' threw error code " << error;
+			OGL_ERROR(s.str());
+		}
 	}
 }

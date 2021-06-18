@@ -10,37 +10,35 @@ set(SOURCE_FILES
 	"input/input.cpp" 
 	"window.cpp"
 	
-	"util/uuid.cpp"
 	"application.cpp"
 
-	"input/input.h"
-	"window.h"
-	 
-	
-	"util/uuid.h"
 	"application.h"
-	
-	
-	
-	"util/debug.h"
 	"util/errors.h"
-	"module.h"
+	"layer.h"
 
-	"main.cpp" "util/worker_pool.h" "util/linked_list.h" "core_modules/render_module.h" "core_modules/event_module.h" "core_modules/update_module.h" "core_modules/threading_module.h"   "core_modules/render_module.cpp" "events/event_dispatcher.h" "events/event_dispatcher.cpp")
-	
-
-
+	"main.cpp"  
+	"util/linked_list.h" 
+	 
+	"events/event_dispatcher.h"  
+	"events/event.h" 
+	"util/util.h" 
+	"events/events.h" 
+	"graphics/vertex_array.h" 
+	"graphics/buffer.h" "graphics/vertex_buffer.h" "graphics/vertex_array.cpp" "graphics/gl_data_types.h")
 
 # specify executable
+add_compile_definitions(OGL_DEBUG OGL_ENABLE_ASSERTS OGL_ENABLE_ERRORS OGL_ENABLE_WARNINGS)
 add_executable(OpenGLProject ${SOURCE_FILES})
+include_directories(OpenGLProject PRIVATE "./")
+target_precompile_headers(OpenGLProject PRIVATE "oglpch.h")
+
+get_target_property(cppversion OpenGLProject CXX_STANDARD)
+message(STATUS "Compiling with C++ Version " ${cppversion})
 
 #add libs
 target_link_libraries(OpenGLProject PRIVATE glad)
 target_link_libraries(OpenGLProject PRIVATE glfw)
 find_package(OpenGL REQUIRED)
-if(UNIX AND NOT APPLE)
-	find_package(LibUUID REQUIRED) 
-endif()
 
 
 # add subfolders

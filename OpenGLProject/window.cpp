@@ -2,49 +2,35 @@
 
 namespace ogl {
 
+	bool Window::s_GladInitialised = false;
 	std::unordered_map<GLFWwindow*, Window*> Window::s_Windows = std::unordered_map<GLFWwindow*, Window*>();
-	std::shared_mutex Window::s_WindowsMutex;
 
-	static void _glfwWindowResizeCallback(GLFWwindow* window, int width, int height);
+	static void _glfwFramebufferResizeCallback(GLFWwindow* window, int width, int height);
 	static void _glfwWindowCloseCallback(GLFWwindow* window);
+	static void _glfwKeyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
-	Window::Window(const std::string& title, int width, int height, bool makeContextCurrent, bool* success) : m_GlfwWindow(nullptr) {
-		m_GlfwWindow = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+	Window::Window(const std::string& title, int width, int height) {
+		const char* t = title.c_str();
+		m_GlfwWindow = glfwCreateWindow(width, height, t, NULL, NULL);
 
-		if (m_GlfwWindow == NULL) {
-			if(success != nullptr) *success = false;
-			return;
-		}
+		OGL_ASSERT(m_GlfwWindow != NULL);
 
 		//GLFW callbacks
-		glfwSetWindowSizeCallback(m_GlfwWindow, (GLFWwindowsizefun)_glfwWindowResizeCallback);
+		glfwSetFramebufferSizeCallback(m_GlfwWindow, (GLFWwindowsizefun)_glfwFramebufferResizeCallback);
 		glfwSetWindowCloseCallback(m_GlfwWindow, (GLFWwindowclosefun)_glfwWindowCloseCallback);
+		glfwSetKeyCallback(m_GlfwWindow, (GLFWkeyfun)_glfwKeyCallback);
 
-		if(makeContextCurrent) glfwMakeContextCurrent(m_GlfwWindow);
-		s_WindowsMutex.lock();
+		MakeContextCurrent(); // we make context current here instead of in the if block for consistency 
+		if (!s_GladInitialised) {
+			gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		}
+
 		s_Windows[m_GlfwWindow] = this;
-		s_WindowsMutex.unlock();
-		*success = true;
 	}
-
-	Window::Window(const std::string& title, int width, int height, bool* success) : Window::Window(title, width, height, true, success) { }
-
-	Window::Window(bool* success) : Window::Window("OGL DEFAULT WINDOW", 200, 200, true, success) {}
 
 	Window::~Window() {
 		glfwDestroyWindow(m_GlfwWindow);
-		s_WindowsMutex.lock();
 		s_Windows.erase(m_GlfwWindow);
-		s_WindowsMutex.unlock();
-	}
-
-	void Window::MakeContextCurrent() {
-		glfwMakeContextCurrent(m_GlfwWindow);
-	}
-
-	bool Window::ShouldClose() {
-		return glfwWindowShouldClose(m_GlfwWindow);
-		
 	}
 
 	void Window::SetShouldClose() {
@@ -57,31 +43,73 @@ namespace ogl {
 		glfwSetWindowSize(m_GlfwWindow, width, height);
 	}
 
-	void Window::SetTitle(const std::string& title) {
-		const char* t = title.c_str();
-		glfwSetWindowTitle(m_GlfwWindow, t);
-	}
-
-	void Window::Update() {
-		glfwSwapBuffers(m_GlfwWindow);
-		glfwPollEvents();
-	}
-
 	void Window::SetHeight(int height) {
 		int width;
 		glfwGetWindowSize(m_GlfwWindow, &width, nullptr);
 		glfwSetWindowSize(m_GlfwWindow, width, height);
 	}
 
-	static void _glfwWindowResizeCallback(GLFWwindow* window, int width, int height) {
-		auto _cc = glfwGetCurrentContext();
-		if(_cc != window) glfwMakeContextCurrent(window);
-		glViewport(0, 0, width, height);
-		if (_cc != window) glfwMakeContextCurrent(_cc);
+	void Window::SetTitle(const std::string& title) {
+		const char* t = title.c_str();
+		glfwSetWindowTitle(m_GlfwWindow, t);
+	}
+
+	void Window::SetVSync(bool enable) {
+		glfwSwapInterval((int)enable);
+	}
+
+	bool Window::GetShouldClose() {
+		return glfwWindowShouldClose(m_GlfwWindow);
+	}
+
+	int Window::GetWidth() {
+		int width;
+		glfwGetWindowSize(m_GlfwWindow, &width, nullptr);
+		return width;
+	}
+
+	int Window::GetHeight() {
+		int height;
+		glfwGetWindowSize(m_GlfwWindow, nullptr, &height);
+		return height;
+	}
+
+	int Window::GetFrameBufferWidth() {
+		int width;
+		glfwGetFramebufferSize(m_GlfwWindow, &width, nullptr);
+		return width;
+	}
+
+	int Window::GetFrameBufferHeight() {
+		int height;
+		glfwGetFramebufferSize(m_GlfwWindow, nullptr, &height);
+		return height;
+	}
+
+	void Window::MakeContextCurrent() {
+		glfwMakeContextCurrent(m_GlfwWindow);
+	}
+
+	void Window::PollEvents() {
+		glfwPollEvents();
+	}
+
+	void Window::SwapBuffers() {
+		glfwSwapBuffers(m_GlfwWindow);
 	}
 
 	static void _glfwWindowCloseCallback(GLFWwindow* window) {
 
+	}
+
+	static void _glfwFramebufferResizeCallback(GLFWwindow* window, int width, int height) {
+		glViewport(0, 0, width, height);
+	}
+
+	static void _glfwKeyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods) {
+		OGL_DEBUG_INFO("Key Event");
+		ogl::Window& w = ogl::Window::GetWindowFromGLFWPointer(window);
+		
 	}
 
 	

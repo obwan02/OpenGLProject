@@ -1,36 +1,41 @@
 #pragma once
-
-#include "glad/glad.h"
-#include "glfw/glfw3.h"
-#include <string>
-#include <memory>
-#include <unordered_map>
-#include <shared_mutex>
+#include <oglpch.h>
+#include "util/util.h"
+#include "events/event.h"
 
 namespace ogl {
 	class Window {
 	public:
-		Window(const std::string& title, int width, int height, bool makeContextCurrent, bool* success);
-		Window(const std::string& title, int width, int height, bool* success);
-		Window(bool* success);
-		/*static Window* CreateWindow(const char* title, int width, int height, bool makeContextCurrent);
-		static Window* CreateWindow(const char* title, int width, int height);*/
+		Window(const std::string& title, int width = 100, int height = 100);
 		~Window();
 
-		void MakeContextCurrent();
-		bool ShouldClose();
 		void SetShouldClose();
-
-		void SetHeight(int height);
 		void SetWidth(int width);
+		void SetHeight(int height);
 		void SetTitle(const std::string& title);
+		void SetVSync(bool enable);
 
-		void Update();
+		template<typename F>
+		void SetEventCallback(const F& func) { this->m_EventCallback = func; }
+		
+		bool GetShouldClose();
+		int GetWidth();
+		int GetHeight();
+		int GetFrameBufferWidth();
+		int GetFrameBufferHeight();
 
+		void MakeContextCurrent();
+		void PollEvents();
+		void SwapBuffers();
+
+		inline GLFWwindow* GetGLFWPointer() { return m_GlfwWindow; };
+
+		static inline Window& GetWindowFromGLFWPointer(GLFWwindow* window) { return *s_Windows[window]; } // no error check
 	private:
 		GLFWwindow* m_GlfwWindow;
+		std::function<void(Event&)> m_EventCallback;
 
-		static std::unordered_map<GLFWwindow*, Window*> s_Windows;
-		static std::shared_mutex s_WindowsMutex;
+		static bool s_GladInitialised;
+		static std::unordered_map<GLFWwindow*, Window*> s_Windows; // no possibility of use after free because lifetime of GLFWwindow is tied to Window
 	};
 }

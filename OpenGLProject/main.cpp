@@ -1,12 +1,10 @@
-#include <chrono>
+#include <oglpch.h>
 
 #include "application.h"
-#include "module.h"
-#include "core_modules/render_module.h"
+#include "util/util.h"
 
 int main() {
 	using namespace ogl;
 	Application myApplication;
-	myApplication.LoadModule<RenderModule>();
 	myApplication.Run();
 }

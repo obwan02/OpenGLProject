@@ -1,10 +1,11 @@
 #pragma once
-#include <stdexcept>
+#include <oglpch.h>
+
 namespace ogl {
 
 	template<typename N>
 	class LinkedList_Node {
-		friend class LinkedList<N>; // LinkedList is friend
+		template<typename> friend class LinkedList; // LinkedList is friend
 	public:
 		LinkedList_Node(const LinkedList_Node& other) = delete; // Delete copy constructor
 		LinkedList_Node(LinkedList_Node&& other) { // Move constructor
@@ -16,15 +17,15 @@ namespace ogl {
 			}
 		}
 
-		bool HasNext() { return this->next == nullptr; }
-		bool HasPrev() { return this->before == nullptr; }
+		bool HasNext() { return this->next != nullptr; }
+		bool HasPrev() { return this->before != nullptr; }
 
 		LinkedList_Node& Next() {
 			if (!HasNext()) throw std::out_of_range("No next element in linked list");
 			return *next;
 		}
 
-		LinkedList_Node Prev() {
+		LinkedList_Node& Prev() {
 			if (!HasPrev()) throw std::out_of_range("No previous element in linked list");
 			return *before;
 		}
@@ -65,15 +66,13 @@ namespace ogl {
 			delete m_End;
 		}
 
-		NodeType& Front() { return m_Start; }
-		NodeType& End() { return m_End; }
-		bool Empty() { return start == nullptr;  }
+		bool Empty() { return m_Start == nullptr;  }
 
 		void PushFront(const T& value) {
 			NodeType* newNode = new NodeType(value);
-			if (start == nullptr) {
-				start = newNode;
-				end = newNode;
+			if (m_Start == nullptr) {
+				m_Start = newNode;
+				m_End = newNode;
 				return;
 			}
 
@@ -84,9 +83,9 @@ namespace ogl {
 
 		void PushBack(const T& value) {
 			NodeType* newNode = new NodeType(value);
-			if (end == nullptr) {
-				start = newNode;
-				end = newNode;
+			if (m_End == nullptr) {
+				m_Start = newNode;
+				m_End = newNode;
 				return;
 			}
 			newNode->before = m_End;
