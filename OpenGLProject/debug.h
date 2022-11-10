@@ -10,13 +10,13 @@
 		#include <signal.h>
 		#define OGL_DEBUG_BREAK() raise(SIGTRAP)
 	#else
-		#error "Platform doesn't support debugbreak yet!"
+		#define OGL_DEBUG_BREAK()
 	#endif
 
 	#define OGL_DEBUG_INFO(...) log::InfoFrom("DEBUG", __VA_ARGS__)
 	#define OGL_DEBUG_WARN(...) log::WarnFrom("DEBUG", __VA_ARGS__)
 #else
-	#define OGL_DEBUGBREAK() exit(-1)
+	#define OGL_DEBUG_BREAK() exit(-1)
 	#define OGL_DEBUG_INFO(...)
 	#define OGL_DEBUG_WARN(...)
 #endif

@@ -66,7 +66,7 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 # specify executable
-add_compile_definitions(OGL_DEBUG OGL_ENABLE_ASSERTS OGL_ENABLE_WARNINGS)
+add_compile_definitions(OGL_DEBUG OGL_ENABLE_WARNINGS)
 add_executable(OpenGLProject ${SOURCE_FILES}  "scene/entity.h")
 include_directories(OpenGLProject PRIVATE "./")
 # target_precompile_headers(OpenGLProject PRIVATE "oglpch.h")

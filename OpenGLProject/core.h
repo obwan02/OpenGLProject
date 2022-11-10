@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 
 #if _MSC_VER
@@ -13,7 +13,6 @@
 
 #elif defined(__clang__) || defined(__GNUC__)
 	#ifndef __linux__
-		#error "This platform is not supported"
 	#else
 		#define OGL_PLATFORM_LINUX
 	#endif 
@@ -22,8 +21,6 @@
 		#define OGL_64
 	#elif defined(__i386__)
 		#define OGL_32
-	#else
-		#error "Can only compile for x86 or x64"
 	#endif
 #else
 	#error "Compiler not supported!"

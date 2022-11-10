@@ -1,0 +1,132 @@
+[
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc  -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -o CMakeFiles/glad.dir/src/glad.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/src/glad.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/src/glad.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/context.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/context.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/context.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/init.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/init.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/init.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/input.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/input.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/input.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/monitor.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/monitor.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/monitor.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/vulkan.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/vulkan.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/vulkan.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/window.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/window.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/window.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/cocoa_init.m.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_init.m",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_init.m"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/cocoa_joystick.m.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_joystick.m",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_joystick.m"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/cocoa_monitor.m.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_monitor.m",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_monitor.m"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/cocoa_window.m.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_window.m",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_window.m"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/cocoa_time.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_time.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/cocoa_time.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/posix_thread.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/posix_thread.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/posix_thread.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/nsgl_context.m.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/nsgl_context.m",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/nsgl_context.m"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/egl_context.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/egl_context.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/egl_context.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/cc -D_GLFW_USE_CONFIG_H -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glfw/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -fPIC -Wall -std=c99 -o CMakeFiles/glfw.dir/osmesa_context.c.o -c /Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/osmesa_context.c",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/src/osmesa_context.c"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/main.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/main.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/main.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/application.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/application.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/application.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/window.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/window.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/window.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/input/input.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/input/input.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/input/input.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/util/fileio.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/fileio.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/fileio.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/util/cpuid.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/cpuid.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/cpuid.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/util/stb_image.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/stb_image.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/stb_image.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/graphics/vertex_array.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/vertex_array.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/vertex_array.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/graphics/2D/renderer2d.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/2D/renderer2d.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/2D/renderer2d.cpp"
+},
+{
+  "directory": "/Users/obwan02/Documents/repos/OpenGLProject/bin/OpenGLProject",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -DOGL_DEBUG -DOGL_ENABLE_WARNINGS -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/OpenGLProject -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/PRIVATE -I/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/. -I/Users/obwan02/Documents/repos/OpenGLProject/bin/vendor/glad/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/glfw/include -I/Users/obwan02/Documents/repos/OpenGLProject/vendor/entt/src  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -stdlib=libc++ -std=gnu++17 -o CMakeFiles/OpenGLProject.dir/graphics/shader.cpp.o -c /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/shader.cpp",
+  "file": "/Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/shader.cpp"
+}
+]

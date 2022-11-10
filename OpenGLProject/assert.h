@@ -19,6 +19,7 @@
 #endif
 #else
 #define OGL_ASSERT(...) 
+#define OGL_DEBUG_ASSERT(...)
 #endif
 
 namespace ogl {
