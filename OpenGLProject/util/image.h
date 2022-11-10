@@ -55,7 +55,7 @@ namespace ogl {
 			return stbi_write_png(path, width, height, 4, data, 0);
 		}
 
-		static std::optional<Image> Open(FILE* file) {
+		static std::optional<Image> open(FILE* file) {
 			stbi_set_flip_vertically_on_load(1);
 
 			int channels, width, height;
@@ -73,7 +73,7 @@ namespace ogl {
 			return Image(data, width, height);
 		}
 
-		static std::optional<Image> Open(const char* file) {
+		static std::optional<Image> open(const char* file) {
 			FILE* fp = fopen(file, "rb");
 			if(!fp) { 
 				log::Error("Failed to open image '", file, "' for reading");
@@ -81,7 +81,7 @@ namespace ogl {
 			}
 			SCOPE_DEFER([fp] { fclose(fp);  });
 
-			return Image::Open(fp);
+			return Image::open(fp);
 		}
 
 		int width, height;

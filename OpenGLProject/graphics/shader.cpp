@@ -16,6 +16,9 @@ namespace ogl {
 	void Shader::bind() { glUseProgram(m_ProgramId); }
 	void Shader::unbind() { glUseProgram(0); }
 
+	ShaderBuilder::ShaderBuilder() {}
+	ShaderBuilder::ShaderBuilder(ShaderVars&& vars) : m_Vars(std::move(vars)) {}
+
 	void ShaderBuilder::add_vertex_shader(FILE* file) {
 		if(const auto data = ReadFile(file))
 			add_vertex_shader(*data);
@@ -60,6 +63,7 @@ namespace ogl {
 	void ShaderBuilder::specify_attrib(uint32_t id, const std::string& name) {
 		m_Attribs.push_back({id, name});
 	}
+
 
 	std::optional<Shader> ShaderBuilder::generate() {
 		if(m_ShaderIds.size() == 0){

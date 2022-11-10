@@ -5,7 +5,6 @@
 #include "core.h"
 #include "buffer.h"
 #include "math/vector.h"
-#include "util/type_traits.h"
 
 namespace ogl {
 
@@ -60,7 +59,9 @@ namespace ogl {
 		~VertexArray();
 
 		inline void bind() { glBindVertexArray(m_GlId); }
-		inline void unbind() { glBindVertexArray(0); }
+		inline void unbind() {
+			glBindVertexArray(0); 
+		}
 
 		template<typename T>
 		void set_attrib(uint32_t id, 

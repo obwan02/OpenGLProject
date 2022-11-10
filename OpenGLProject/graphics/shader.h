@@ -1,5 +1,6 @@
 #pragma once
 
+#include <any>
 #include <cstdio>
 #include <string>
 #include <optional>
@@ -7,6 +8,7 @@
 #include <string_view>
 
 #include <glad/glad.h>
+#include <unordered_map>
 
 #include "core.h"
 #include "defer.h"
@@ -62,8 +64,12 @@ namespace ogl {
 		uint32_t m_ProgramId;
 	};
 
+	typedef std::unordered_map<std::string, std::any> ShaderVars;
+
 	class ShaderBuilder {
 	public:
+		ShaderBuilder();
+		ShaderBuilder(ShaderVars&& vars);
 
 		// Adds a vertex shader by reading from a file.
 		// This function will fully read the FILE* stream.
@@ -85,7 +91,13 @@ namespace ogl {
 		void specify_attrib(uint32_t id, const std::string& name);
 
 		std::optional<Shader> generate();
+	
 	private:
+
+		std::string replace_vars(std::string_view);
+
+	private:
+		ShaderVars m_Vars;
 		ArrayVector<uint32_t, MAX_SHADERS> m_ShaderIds;
 		ArrayVector<std::pair<uint32_t, std::string>, MAX_ATTRIBS> m_Attribs;
 	};

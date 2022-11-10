@@ -83,7 +83,7 @@ namespace ogl {
 		}
 
 #if defined(OGL_DEBUG) && defined(GLAD_DEBUG)
-#if defined(GLDA_DEBUG)
+#if defined(GLAD_DEBUG)
 		glad_set_post_callback((GLADcallback)_gladPostCallback);
 #endif
 		glEnable(GL_DEBUG_OUTPUT);

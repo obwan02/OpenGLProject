@@ -3,15 +3,17 @@
 #include <stdint.h>
 #include <memory>
 #include <unordered_map>	
+#include "assert.h"
 #include "core.h"
 
 #ifndef OGL_GREEDY_VECTOR_DEFAULT_ALLOCATION_SIZE
-#define OGL_GREEDY_VECTOR_DEFAULT_ALLOCATION_SIZE 2
+#define OGL_GREEDY_VECTOR_DEFAULT_ALLOCATION_SIZE 10
 #endif
 
 namespace ogl {
 
 	// Same as a normal vector but never deallocates space unless specifically asked to
+	// and also always has memory allocated
 	template<typename T, typename Allocator = std::allocator<T>>
 	class GreedyVector {
 	public:
@@ -20,7 +22,10 @@ namespace ogl {
 		using iterator = T*;
 		using const_iterator = const T*;
 
-		GreedyVector() : m_Data(nullptr), m_End(nullptr) {}
+		GreedyVector() : m_Capacity(OGL_GREEDY_VECTOR_DEFAULT_ALLOCATION_SIZE), m_Allocator() {
+			m_Data = m_Allocator.allocate(m_Capacity);
+			m_End = m_Data;
+		}
 		
 		GreedyVector(const GreedyVector<T>& other) : m_Allocator(other.m_Allocator) {
 			m_Data = m_Allocator.allocate(other.size());
@@ -33,7 +38,7 @@ namespace ogl {
 		GreedyVector(const Allocator& alloc) : m_Data(nullptr), m_End(nullptr), m_Allocator(alloc) { }
 		GreedyVector(Allocator&& alloc) : m_Data(nullptr), m_End(nullptr), m_Allocator(static_cast<Allocator&&>(alloc)) { }
 		
-		GreedyVector(size_t cap) { m_Data = m_Allocator.allocate(cap); m_End = m_Data; };
+		GreedyVector(size_t cap) : m_Allocator() { m_Data = m_Allocator.allocate(cap); m_End = m_Data; };
 		GreedyVector(size_t cap, const Allocator& alloc) : m_Allocator(alloc) { m_Data = m_Allocator.allocate(cap); m_End = m_Data; };
 		GreedyVector(size_t cap, Allocator&& alloc) : m_Allocator(static_cast<Allocator&&>(alloc)) { m_Data = m_Allocator.allocate(cap); m_End = m_Data; };
 		
@@ -63,13 +68,13 @@ namespace ogl {
 		}
 
 		void push_back(const T& item) {
-			if (m_End - m_Data >= m_Capacity) { reserve_extra(m_AllocationSize); }
+			if (m_End - m_Data >= m_Capacity || m_Data == nullptr || m_End == nullptr) { reserve_extra(m_AllocationSize); }
 			::new(m_End) T(item);
 			m_End++;
 		}
 
 		void push_back(T&& item) {
-			if (m_End - m_Data >= m_Capacity) { reserve_extra(m_AllocationSize); }
+			if (m_End - m_Data >= m_Capacity || m_Data == nullptr || m_End == nullptr) { reserve_extra(m_AllocationSize); }
 			::new(m_End) T(item);
 			m_End++;
 		}
@@ -125,18 +130,6 @@ namespace ogl {
 		// reallocates the internal buffer so that cap = size + padding
 		void shrink_to_size(size_t padding) {
 			if(size() + padding == cap()) return;
-		}
-
-		void resize(size_t size, const T& val) {
-			if(this->size() == size) return;
-			if (this->size() < size) {
-				reserve(size);
-				std::uninitialized_fill(m_End, m_Data + size, val);
-				m_End = m_Data + size;
-				return;
-			}
-
-			pop_back_many(this->size() - size);
 		}
 
 		void set_allocation_size(size_t size) { m_AllocationSize = size; }

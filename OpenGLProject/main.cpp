@@ -1,7 +1,6 @@
 #include "application.h"
-#include "graphics/2D/renderer2d.h"
-#include "util/storage.h"
-#include "math/vector.h"
+#include "core.h"
+#include "util/greedy_vector.h"
 
 template <typename T, typename U>
 struct decay_equiv :

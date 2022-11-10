@@ -19,6 +19,13 @@ namespace ogl {
 	using texslot_t = uint32_t;
 	inline constexpr texslot_t unassigned_texid = -1U;
 
+	struct TextureAssetParams {
+		bool generateMipMaps;
+		FilterMode mipMapFilterMode;
+		FilterMode filterMode;
+		WrapMode wrapMode;
+	};
+
 	class Texture2D {
 	public:
 		Texture2D(const Texture2D& other) = delete;
@@ -67,6 +74,18 @@ namespace ogl {
 
 		uint32_t get_renderer_id() const {
 			return m_GlId;
+		}
+
+		/* ASSET CODE */
+
+		using AssetParams = TextureAssetParams;
+
+		static std::optional<Texture2D> construct_asset(const std::string& path, AssetParams params) {
+			if(auto image = Image::open(path.c_str())) {
+				Texture2D texture{*image, params.generateMipMaps, params.mipMapFilterMode, params.filterMode, params.wrapMode};
+			}
+
+			return std::nullopt;
 		}
 
 	private:

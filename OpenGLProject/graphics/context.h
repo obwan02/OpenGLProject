@@ -14,7 +14,7 @@ namespace ogl {
 	// of the target window. Fields marked with 'const' do not change over the lifetime of
 	// the program.
 	struct GraphicsContext {
-		intern::GLContext GL;
+		const intern::GLContext GL;
 		const int maxTotalTextureSlots;
 		const int maxFragmentTextureSlots;
 		int frameBufferWidth, frameBufferHeight;

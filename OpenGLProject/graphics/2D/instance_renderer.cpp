@@ -1,6 +1,7 @@
-#include "renderer2d.h"
+#include "instance_renderer.h"
 #include "graphics/context.h"
 #include "math/matrix.h"
+#include "log.h"
 #include <algorithm>
 #include <sstream>
 
@@ -37,7 +38,7 @@ namespace ogl {
 		buffer.unmap_indices();
 	}
 
-	Renderer2D::Renderer2D(const GraphicsContext& context) : m_BatchVBO(OGL_2D_BATCH_MAX_VERTS * sizeof(SpriteVertex), BufferUsage::DynamicDraw),
+	BatchRenderer2D::BatchRenderer2D(const GraphicsContext& context) : m_BatchVBO(OGL_2D_BATCH_MAX_VERTS * sizeof(SpriteVertex), BufferUsage::DynamicDraw),
 		m_BatchIBO(OGL_2D_BATCH_MAX_INDICES, BufferUsage::StaticDraw), m_MaxTextureSlots(context.maxFragmentTextureSlots)
 	{
 		// Setup index
@@ -66,6 +67,7 @@ namespace ogl {
 		);
 
 		std::stringstream fragShader;
+		ogl::log::Info("Number of texture slots: ", m_MaxTextureSlots);
 		fragShader << "#version 330 core\n"
 			"out vec4 frag_Colour;\n"
 			"\n"
@@ -79,14 +81,13 @@ namespace ogl {
 			"\n"
 			"void main() {\n"
 			"   vec4 textureColour = texture(u_samplers[texId], texCoord);\n"
-			"	if(textureColour.w > 0) {\n"
-			"        frag_Colour = colour * textureColour;\n"
-			"    } else {\n"
-			"        frag_Colour = colour;"
-			"    }\n"
+			"   frag_Colour = textureColour; \n"
 			"}\n";
 
-		builder.add_fragment_shader(fragShader.str());
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+ 		builder.add_fragment_shader(fragShader.str());
 
 		m_VAO.set_index_buffer(m_BatchIBO);
 		constexpr uint32_t vertPosIndex      = 0;
@@ -107,7 +108,7 @@ namespace ogl {
 		if(!shader) { OGL_ASSERT(false, "Failed to generate shader."); }
 			m_Shader = std::make_unique<Shader>(std::move(*shader));;
 
-		ogl::log::InfoFrom("Renderer2D", "Using ", m_MaxTextureSlots, " texture slots");
+		ogl::log::InfoFrom("BatchRenderer2D", "Using ", m_MaxTextureSlots, " texture slots");
 
 		// Setup samplers
 		{
@@ -123,16 +124,105 @@ namespace ogl {
 		m_BatchMappedVBO = m_BatchVBO.map_buffer<SpriteVertex>(BufferMapHint::WriteOnly);
 	}
 
-	Renderer2D::~Renderer2D() {}
+	BatchRenderer2D::~BatchRenderer2D() {}
 
+	void BatchRenderer2D::process(const RendererSpriteData& data, const GraphicsContext& context) {
+	
+		// This method will segment the provided data into 
+		// batches and process it.
 
-	Matrix4f Renderer2D::calc_ortho_mat(const GraphicsContext& context) {
+		// This will hold from where we need to transform the last set of data
+		size_t dataOffset = 0;
+		for(size_t i = 0; i < data.spriteCount; i++) {
+
+			if(m_BatchSpriteCount + i == OGL_2D_BATCH_MAX_SPRITES) {
+				// If we are limited by batch size we process and flush  
+				auto renderData = data.subset(dataOffset, i - dataOffset);
+				transform_data(renderData);
+				flush(context);
+				dataOffset = i;
+			}
+
+			// Check to see if we are at our texture limit
+			auto& tex = *(data.texture + i);
+
+			// We have a new texture
+			// TODO: check for duplicate textures
+			texslot_t id = m_CurrentTexSlot++;
+			tex->set_texid(id);
+
+			if(m_CurrentTexSlot == m_MaxTextureSlots) {
+				// The batch is now full, so we need to flush after processing 
+				// this batch.
+				auto renderData = data.subset(dataOffset, i - dataOffset);
+				transform_data(renderData);
+				flush(context);
+				dataOffset = i;
+			}
+		}
+
+		auto renderData = data.offset(dataOffset);
+		transform_data(renderData);
+	}
+
+	// TODO: add specialisation for soa vs. aos
+	void BatchRenderer2D::transform_data(const RendererSpriteData& data) {
+
+		size_t startIndex = m_BatchSpriteCount * 4;
+
+		// TODO: Make this more DOD friendly?
+		size_t vertIndex = startIndex;
+		for (size_t i = 0; i < data.spriteCount; i++) {
+			const auto& pos = data.pos[i];
+			const auto& size = data.size[i];
+			m_BatchMappedVBO[vertIndex + 0].position = pos;
+			m_BatchMappedVBO[vertIndex + 1].position = Vector3f{ pos.x, pos.y + size.y, pos.z };
+			m_BatchMappedVBO[vertIndex + 2].position = Vector3f{ pos.x + size.x, pos.y + size.y, pos.z };
+			m_BatchMappedVBO[vertIndex + 3].position = Vector3f{ pos.x + size.x, pos.y, pos.z };
+			vertIndex += 4;
+		}
+
+		vertIndex = startIndex;
+		for (size_t i = 0; i < data.spriteCount; i++) {
+			const auto& col = data.col[i];
+			m_BatchMappedVBO[vertIndex + 0].colour = col;
+			m_BatchMappedVBO[vertIndex + 1].colour = col;
+			m_BatchMappedVBO[vertIndex + 2].colour = col;
+			m_BatchMappedVBO[vertIndex + 3].colour = col;
+			vertIndex += 4;
+		}
+
+		vertIndex = startIndex;
+		for (size_t i = 0; i < data.spriteCount; i++) {
+			const auto& tc = data.texCoords[i];
+			m_BatchMappedVBO[vertIndex + 0].texCoord = tc.pos;
+			m_BatchMappedVBO[vertIndex + 1].texCoord = tc.pos + Vector2f{ 0.0f, tc.size.y };
+			m_BatchMappedVBO[vertIndex + 2].texCoord = tc.pos + tc.size;
+			m_BatchMappedVBO[vertIndex + 3].texCoord = tc.pos + Vector2f{ tc.size.x, 0.0f };
+			vertIndex += 4;
+		}
+
+		vertIndex = startIndex;
+		auto texIter = data.texture;
+		for (size_t i = 0; i < data.spriteCount; i++) {
+			const auto& texId = i;
+			m_BatchMappedVBO[vertIndex + 0].texId = texId;
+			m_BatchMappedVBO[vertIndex + 1].texId = texId;
+			m_BatchMappedVBO[vertIndex + 2].texId = texId;
+			m_BatchMappedVBO[vertIndex + 3].texId = texId;
+			vertIndex += 4;
+		}
+
+		m_BatchSpriteCount += data.spriteCount;
+	}
+
+	Matrix4f BatchRenderer2D::calc_ortho_mat(const GraphicsContext& context) {
 		const auto w = context.frameBufferWidth / 2.0f;
 		const auto h = context.frameBufferHeight / 2.0f;
 		return Matrix4f::Ortho(-w, w, -h, h, m_Near, m_Far);
 	}
 
-	void Renderer2D::flush(const GraphicsContext& context) {
+	void BatchRenderer2D::flush(const GraphicsContext& context) {
 		m_BatchVBO.unmap_buffer();
 
 		const auto ortho = calc_ortho_mat(context);
@@ -143,7 +233,7 @@ namespace ogl {
 
 		// Resetting batch counters
 		m_BatchSpriteCount = 0;
-		m_BatchTexIds.clear();
+		m_CurrentTexSlot = 0;
 		m_BatchVBO.orphan();
 		m_BatchMappedVBO = m_BatchVBO.map_buffer<SpriteVertex>(BufferMapHint::WriteOnly);
 	}
