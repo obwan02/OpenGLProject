@@ -236,6 +236,7 @@ OpenGLProject/CMakeFiles/OpenGLProject.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__memory/uninitialized_algorithms.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/cassert \
   /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/assert.h \
+  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/log.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/string \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/algorithm \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__bits \
@@ -360,7 +361,6 @@ OpenGLProject/CMakeFiles/OpenGLProject.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/wctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/_types/_wctrans_t.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/log.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/ios \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__locale \
@@ -435,30 +435,4 @@ OpenGLProject/CMakeFiles/OpenGLProject.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/math.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__node_handle \
   /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/time.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/2D/renderer2d.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/vector \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/__split_buffer \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/greedy_vector.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/math/vector.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/texture.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/image.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/execution \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/stb_image.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/stb_custom_macros.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/stb_image_write.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/buffer.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/memview.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/vertex_array.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/type_traits.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/string_hash.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/shader.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/fileio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/fstream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/filesystem \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/stack \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/deque \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/usr/include/c++/v1/iomanip \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/array_vector.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/math/matrix.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/graphics/2D/tex_coords.h \
-  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/storage.h
+  /Users/obwan02/Documents/repos/OpenGLProject/OpenGLProject/util/greedy_vector.h

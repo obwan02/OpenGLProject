@@ -32,8 +32,8 @@ set(SOURCE_FILES
 	"util/array_vector.h"
 	"util/text_colours.h"
 	"util/greedy_vector.h" 
-	"util/fileio.h"
 	"util/fileio.cpp"
+	"util/fileio.h"
 
 	"util/stb_image.h"
 	"util/stb_image.cpp"

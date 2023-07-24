@@ -32,9 +32,9 @@ namespace ogl {
 	public:
 	
 		Image(const Image& other) : width(other.width), height(other.height) {
-			size_t size = (size_t)width * (size_t)height;
+			const size_t size = (size_t)width * (size_t)height;
 			data = new(STBI_MALLOC(size * sizeof(pixel_t))) pixel_t[size]; 
-			std::copy_n(std::execution::par_unseq, other.data, width * height, data);
+			memcpy(data, other.data, size * sizeof(pixel_t));
 		}
 
 		Image(Image&& other) : data(other.data), width(other.width), height(other.height) { other.data = nullptr; }
@@ -87,5 +87,4 @@ namespace ogl {
 		int width, height;
 		pixel_t* data;
 	};
-
 }

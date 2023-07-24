@@ -7,8 +7,7 @@
 #define _HAS_CXX17 true
 #define _HAS_CXX20 false
 
-#include <Window.h>
-
+#include <string>
 #include <algorithm>
 #include <any>
 #include <array>
@@ -26,7 +25,6 @@
 #include <stdexcept>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
 #include <string_view>
 #include <thread>
 #include <tuple>
